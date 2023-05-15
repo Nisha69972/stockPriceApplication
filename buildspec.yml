@@ -1,6 +1,10 @@
 version: 0.2
 
 phases:
+ pre_build:
+  commands:
+    - echo "insatlling maven"
+    #- apt-get-install -y maven
   build:
     commands:
       - echo Entered the build phase...
@@ -10,5 +14,6 @@ phases:
       - echo Build completed successfully
 artifacts:
   files:
-     - '**/*'
+  - '**/*'
+    #- target/StockPricesApp-0.0.1-SNAPSHOT.jar
   discard-paths: yes
