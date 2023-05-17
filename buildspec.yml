@@ -1,21 +1,13 @@
 version: 0.2
 
 phases:
- install:
-  runtine-versions: 
-    java: openidk17
-    docker: 19
-  pre build:
-    commands:
-      - echo Logging in to Docker Hub..
-      - echo docker login -u nisha26 -p Nisha@261220
-    build:
-    commands:
-      - echo Building the Spring Boot application...
-       -./mnvnw clean package -DskipTests-true
-       - echo Building the Docker Image...
-       - docker bulld -t sharadrajore/stockimage:latest .
-    post build: 
-     commands:
-       - echo Pushing the Docker Image to Docker Hub..
-       - docker push nisha26/stockimage:latest
+ build:
+   commands:
+     - echo Build started on `date`
+     - docker build -t stockimage .
+     - docker tag stockimage 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_registery:<tag>
+     - $(aws ecr get-login --no-include-email --region ap-south-1)
+     - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_registery:<tag>
+ post_build:
+   commands:
+     - echo Build completed on `date`
