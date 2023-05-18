@@ -12,9 +12,9 @@ phases:
       - echo Building the Spring Boot application...
       - mvn clean package
       - echo Building the Docker image...
-      - docker build -t nisha26/stockpriceapp:latest .
+      - docker build -t nisha26/stockpricesapp:latest .
   post_build:
     commands:
       - echo Pushing the Docker image to Docker Hub...
-      - docker login -u nisha26 -p Nisha@261220
-      - docker push nisha26/stockpriceapp:latest
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push nisha26/stockpricesapp:latest
