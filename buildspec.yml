@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - docker build -t 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stocksprice:latest .
-      - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stockprice:latest
+      - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stocksprice:latest
   post_build:
     commands:
       - echo Build completed
