@@ -3,8 +3,8 @@ version: 0.2
 phases:
  build:
   commands:
-     - docker build -t 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_registry/stocksprice:latest .
-     - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_regstry/stocksprice:latest
+     - docker build -t nisha26/stocksprice:latest .
+     - docker push nisha26/stocksprice:latest
  post_build:
    commands:
      -echo Build completed
