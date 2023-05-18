@@ -1,11 +1,23 @@
 version: 0.2
+
 phases:
- build:
-   commands:
-     - docker build -t stockimage .
-     - docker tag stockimage 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_registery:<tag>
-     - $(aws ecr get-login --no-include-email --region ap-south-1)
-     - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stock_registery:<tag>
- post_build:
-   commands:
-     - echo Build completed
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to DockerHub...
+      - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stocksprice:latest .
+      - docker push 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stockprice:latest
+  post_build:
+    commands:
+      - echo Build completed
+artifacts:
+  files:
+    - '**/*'
+
+
