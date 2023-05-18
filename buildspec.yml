@@ -1,9 +1,6 @@
 version: 0.2
 
 phases:
- pre_build:
-  commands:
-     - echo Nisha@261220 | docker login -u nisha26 --password-stdin
  build:
   commands:
      - docker build -t 597052231981.dkr.ecr.ap-south-1.amazonaws.com/stocksprice:latest .
